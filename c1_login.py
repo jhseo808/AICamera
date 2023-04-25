@@ -34,3 +34,19 @@ btn_live = driver.find_element(By.XPATH, '//*[@id="sidebar-shortcuts-large"]/a[1
 btn_playback = driver.find_element(By.XPATH, '//*[@id="sidebar-shortcuts-large"]/a[2]')
 btn_setup = driver.find_element(By.XPATH, '//*[@id="sidebar-shortcuts-large"]/a[3]')
 btn_logout = driver.find_element(By.XPATH, '//*[@id="sidebar-shortcuts-large"]/a[4]')
+
+# PTZ_PTZ 제어
+zoom_in = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[1]/div[1]/button')
+zoom_out = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[1]/div[3]/button')
+focus_in = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[3]/div[1]/button')
+focus_out = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[3]/div[3]/button')
+focus_auto = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[5]/div/button')
+
+ptz_zoomfocus = [zoom_in, zoom_out, focus_in, focus_out, focus_auto]
+btn_menu.click()
+for ptz in ptz_zoomfocus:
+    action.click_and_hold(ptz).pause(1).release(ptz).perform()
+    print(ptz, 'ok')
+
+
+# PLAYER CONTROL_라이브 제어

@@ -42,11 +42,37 @@ focus_in = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[3]
 focus_out = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[3]/div[3]/button')
 focus_auto = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[5]/div/button')
 
-ptz_zoomfocus = [zoom_in, zoom_out, focus_in, focus_out, focus_auto]
+# PTZ 제어
 btn_menu.click()
-for ptz in ptz_zoomfocus:
+ptz_control = [zoom_in, zoom_out, focus_in, focus_out, focus_auto]
+for ptz in ptz_control:
     action.click_and_hold(ptz).pause(1).release(ptz).perform()
     print(ptz, 'ok')
 
+slider_zoom = driver.find_element(By.XPATH, '//*[@id="ptz_panel"]/div/div[1]/div[7]/div/span/span[1]/span[6]')
+action.click_and_hold(slider_zoom).move_by_offset(50, 0).move_by_offset(-50, 0).release().perform()
+print('Direct Zoom ok')
 
 # PLAYER CONTROL_라이브 제어
+live_control = driver.find_element(By.ID, 'player_control_pannel')
+live_control.click()
+time.sleep(2)
+
+# display mode
+screen_real = driver.find_element(By.XPATH, '//*[@id="display_list"]/div[1]/label/div')
+screen_full = driver.find_element(By.XPATH, '//*[@id="display_list"]/div[2]/label/div')
+screen_custom = driver.find_element(By.XPATH, '//*[@id="display_list"]/div[3]/label/div')
+
+# screen_full.click()
+# print('screen_full ok')
+# time.sleep(2)
+# action.send_keys(Keys.ESCAPE).perform()
+screen_custom.click()
+slider_screen = driver.find_element(By.XPATH, '//*[@id="colMenu1"]/div/div[2]/li/span/span[1]/span[6]')
+action.click_and_hold(slider_screen).move_by_offset(50, 0).move_by_offset(-50, 0).release().perform()
+print('screen_custom ok')
+screen_real.click()
+print('screen_real ok')
+time.sleep(2)
+
+# protocol

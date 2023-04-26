@@ -50,3 +50,10 @@ set_system = driver.find_element(By.XPATH, '//*[@id="sidebar"]/ul/li[6]/a')
 
 # 설정 > 정보
 set_info.click()
+# 스크린샷 기능 추가
+source_info = driver.find_element(By.XPATH, '//*[@id="main-container"]/div[2]/div/div[2]/div[2]/div/div[5]/div[2]/div/div/input')
+source_info.click()
+print(source_info.get_attribute("value"),'ok')
+
+popup_btn_ok = driver.find_element(By.XPATH, '//*[@id="form_opensource"]/div[2]/button')
+popup_btn_ok.click()
